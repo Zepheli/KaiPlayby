@@ -1,0 +1,310 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<div class="pyro">
+<div class="before"></div>
+
+  <div class="after"></div>
+</div>
+
+<body style="background-color:black; background-repeat: no-repeat; background-size: cover;" >
+<img align=left src=https://i.postimg.cc/15qjSRcW/jika1.png width=auto height=90% style="">
+<br>
+<br>
+<br>
+<br>
+
+<center><font color="#ffd700" face='georgia' size=7><b>Kai</b></font>
+
+ <br>
+
+<font color="#ffd700" face='verdana' size='2'>You weeb</font>
+
+</center>
+
+<iframe width=0 height=0 src=https://www.youtube.com/embed/dSKnMckPFU4?autoplay=1 title=YouTube video player frameborder=0 allow=accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>
+
+
+
+<script>
+
+{
+    const colors = [ 'red', 'red', 'red', 'orange', 'yellow', 'yellow']; //added 'blue', 'purple', 'palegreen' to orange, red, yellow
+    const bubbles = 25;
+
+    const explode = (x, y) => {
+        let particles = [];
+        let ratio = window.devicePixelRatio;
+        let c = document.createElement('canvas');
+        let ctx = c.getContext('2d');
+
+        c.style.position = 'absolute';
+        c.style.left = (x - 100) + 'px';
+        c.style.top = (y - 100) + 'px';
+        c.style.pointerEvents = 'none';
+        c.style.width = 200 + 'px';
+        c.style.height = 200 + 'px';
+        c.style.zIndex = 100;
+        c.width = 200 * ratio;
+        c.height = 200 * ratio;
+        document.body.appendChild(c);
+
+        for(var i = 0; i < bubbles; i++) {
+            particles.push({
+                x: c.width / 2,
+                y: c.height / 2,
+                radius: r(20, 30),
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: r(0, 360, true),
+                speed: r(8, 12),
+                friction: 0.9,
+                opacity: r(0, 0.5, true),
+                yVel: 0,
+                gravity: 0.1
+            });
+        }
+
+        render(particles, ctx, c.width, c.height);
+        setTimeout(() => document.body.removeChild(c), 1000);
+    }
+
+    const render = (particles, ctx, width, height) => {
+        requestAnimationFrame(() => render(particles, ctx, width, height));
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach((p, i) => {
+            p.x += p.speed * Math.cos(p.rotation * Math.PI / 180);
+            p.y += p.speed * Math.sin(p.rotation * Math.PI / 180);
+
+            p.opacity -= 0.01;
+            p.speed *= p.friction;
+            p.radius *= p.friction;
+            p.yVel += p.gravity;
+            p.y += p.yVel;
+
+            if(p.opacity < 0 || p.radius < 0) return;
+
+            ctx.beginPath();
+            ctx.globalAlpha = p.opacity;
+            ctx.fillStyle = p.color;
+            ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false);
+            ctx.fill();
+        });
+
+        return ctx;
+    }
+
+    const r = (a, b, c) => parseFloat((Math.random() * ((a ? a : 1) - (b ? b : 0)) + (b ? b : 0)).toFixed(c ? c : 0));
+
+    document.addEventListener('click', e => explode(e.pageX, e.pageY));  // class .js-exlode explodes on click
+}
+
+$(document).ready(function(){
+$('img').click(function() {
+  $('img').toggle( "explode", {pieces: 16}, 2000 );
+});
+ //$('img').fadeout();
+ $('img').hide();
+$('img').fadeIn(3000);
+$('font').hide();
+$('font').fadeTo(3000, 1.0);
+
+
+
+});
+
+</script>
+
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden; }
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: -120px -218.66667px red, 248px -16.66667px red, 190px 16.33333px red, -113px -308.66667px red, -109px -287.66667px red, -50px -313.66667px red, 226px -31.66667px red, 180px -351.66667px red, -12px -338.66667px red, 220px -388.66667px red, -69px -27.66667px red, -111px -339.66667px red, 155px -237.66667px red, -152px -380.66667px red, -50px -37.66667px red, -95px -175.66667px red, -88px 10.33333px red, 112px -309.66667px red, 69px -415.66667px red, 168px -100.66667px red, -244px 24.33333px red, 97px -325.66667px red, -211px -182.66667px red, 236px -126.66667px red, 140px -196.66667px yellow, 125px -175.66667px yellow, 118px -381.66667px yellow, 144px -111.66667px yellow, 36px -78.66667px yellow, -63px -196.66667px yellow, -218px -227.66667px yellow, -134px -377.66667px yellow, -36px -412.66667px yellow, 209px -106.66667px yellow, 91px -278.66667px yellow, -22px -191.66667px yellow, 139px -392.66667px orange, 56px -2.66667px orange, -156px -276.66667px orange, -163px -233.66667px orange, -238px -346.66667px orange, 62px -363.66667px orange, 244px -170.66667px orange, 224px -142.66667px orange, 141px -208.66667px orange, 211px -285.66667px orange, 181px -128.66667px orange, 90px -123.66667px orange, 189px 70.33333px orange, -18px -383.66667px orange, 100px -6.66667px orange;
+  -moz-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+  -webkit-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+  -o-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+  -ms-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+  animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards; }
+
+.pyro > .after {
+  -moz-animation-delay: 1.25s, 1.25s, 1.25s;
+  -webkit-animation-delay: 1.25s, 1.25s, 1.25s;
+  -o-animation-delay: 1.25s, 1.25s, 1.25s;
+  -ms-animation-delay: 1.25s, 1.25s, 1.25s;
+  animation-delay: 1.25s, 1.25s, 1.25s;
+  -moz-animation-duration: 1.25s, 1.25s, 6.25s;
+  -webkit-animation-duration: 1.25s, 1.25s, 6.25s;
+  -o-animation-duration: 1.25s, 1.25s, 6.25s;
+  -ms-animation-duration: 1.25s, 1.25s, 6.25s;
+  animation-duration: 1.25s, 1.25s, 6.25s; }
+
+@-webkit-keyframes bang {
+  from {
+    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white; } }
+@-moz-keyframes bang {
+  from {
+    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white; } }
+@-o-keyframes bang {
+  from {
+    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white; } }
+@-ms-keyframes bang {
+  from {
+    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white; } }
+@keyframes bang {
+  from {
+    box-shadow: 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white, 0 0 white; } }
+@-webkit-keyframes gravity {
+  to {
+    transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -webkit-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    opacity: 0; } }
+@-moz-keyframes gravity {
+  to {
+    transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -webkit-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    opacity: 0; } }
+@-o-keyframes gravity {
+  to {
+    transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -webkit-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    opacity: 0; } }
+@-ms-keyframes gravity {
+  to {
+    transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -webkit-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    opacity: 0; } }
+@keyframes gravity {
+  to {
+    transform: translateY(200px);
+    -moz-transform: translateY(200px);
+    -webkit-transform: translateY(200px);
+    -o-transform: translateY(200px);
+    -ms-transform: translateY(200px);
+    opacity: 0; } }
+@-webkit-keyframes position {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%; }
+
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%; }
+
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%; }
+
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%; }
+
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%; } }
+@-moz-keyframes position {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%; }
+
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%; }
+
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%; }
+
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%; }
+
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%; } }
+@-o-keyframes position {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%; }
+
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%; }
+
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%; }
+
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%; }
+
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%; } }
+@-ms-keyframes position {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%; }
+
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%; }
+
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%; }
+
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%; }
+
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%; } }
+@keyframes position {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%; }
+
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%; }
+
+  40%, 59.9% {
+    margin-top: 20%;
+    margin-left: 70%; }
+
+  60%, 79.9% {
+    margin-top: 30%;
+    margin-left: 20%; }
+
+  80%, 99.9% {
+    margin-top: 30%;
+    margin-left: 80%; } }
+
+</style>
+
+
+
+
+
+
